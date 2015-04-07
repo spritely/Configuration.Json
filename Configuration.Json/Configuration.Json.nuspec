@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Spritely.Configuration.Json</id>
+    <version>$version$</version>
+    <title>Spritely.Configuration.Json</title>
+    <authors>Victor Robinson</authors>
+    <owners>Victor Robinson</owners>
+    <language>en-US</language>
+    <licenseUrl>https://github.com/spritely/Configuration.Json/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/spritely/Configuration.Json</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>This is a simple project for harmonizing JSON settings.</description>
+    <copyright>Copyright (C) 2015</copyright>
+    <tags>Spritely Configuration Json</tags>
+  </metadata>
+</package>
