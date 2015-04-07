@@ -7,10 +7,10 @@
 
 namespace Spritely.Configuration.Json.Test
 {
-    using Newtonsoft.Json;
-    using NUnit.Framework;
     using System;
     using System.Security;
+    using Newtonsoft.Json;
+    using NUnit.Framework;
 
     [TestFixture]
     public class JsonTest
@@ -25,9 +25,12 @@ namespace Spritely.Configuration.Json.Test
         {
             var result = JsonConvert.SerializeObject(new CamelCasedPropertyTest(), Json.SerializerSettings);
 
-            Assert.That(result, Is.EqualTo("{" + Environment.NewLine +
-"  \"testName\": \"Hello\"" + Environment.NewLine +
-"}"));
+            Assert.That(
+                result,
+                Is.EqualTo(
+                    "{" + Environment.NewLine +
+                    "  \"testName\": \"Hello\"" + Environment.NewLine +
+                    "}"));
         }
 
         [Test]
@@ -35,9 +38,25 @@ namespace Spritely.Configuration.Json.Test
         {
             var result = JsonConvert.SerializeObject(new CamelCasedEnumTest(), Json.SerializerSettings);
 
-            Assert.That(result, Is.EqualTo("{" + Environment.NewLine +
-"  \"first\": \"firstType\"" + Environment.NewLine +
-"}"));
+            Assert.That(
+                result,
+                Is.EqualTo(
+                    "{" + Environment.NewLine +
+                    "  \"first\": \"firstType\"" + Environment.NewLine +
+                    "}"));
+        }
+
+        [Test]
+        public void Serializer_reads_and_writes_SecureString_types()
+        {
+            var serializedValue = "{" + Environment.NewLine +
+                                  "  \"secure\": \"Password\"" + Environment.NewLine +
+                                  "}";
+            var deserialized = JsonConvert.DeserializeObject<SecureStringTest>(serializedValue, Json.SerializerSettings);
+
+            var result = JsonConvert.SerializeObject(deserialized, Json.SerializerSettings);
+
+            Assert.That(result, Is.EqualTo(serializedValue));
         }
 
         private class CamelCasedPropertyTest
@@ -50,22 +69,11 @@ namespace Spritely.Configuration.Json.Test
             public TestEnum First = TestEnum.FirstType;
         }
 
-        [Test]
-        public void Serializer_reads_and_writes_SecureString_types()
-        {
-            var serializedValue = "{" + Environment.NewLine +
-"  \"secure\": \"Password\"" + Environment.NewLine +
-"}";
-            var deserialized = JsonConvert.DeserializeObject<SecureStringTest>(serializedValue, Json.SerializerSettings);
-
-            var result = JsonConvert.SerializeObject(deserialized, Json.SerializerSettings);
-
-            Assert.That(result, Is.EqualTo(serializedValue));
-        }
-
         private class SecureStringTest
         {
+#pragma warning disable 649
             public SecureString Secure;
+#pragma warning restore
         }
     }
 }
