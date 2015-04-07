@@ -9,6 +9,7 @@ namespace Spritely.Configuration.Json.Test
 {
     using Newtonsoft.Json;
     using NUnit.Framework;
+    using System;
     using System.Security;
 
     [TestFixture]
@@ -24,9 +25,9 @@ namespace Spritely.Configuration.Json.Test
         {
             var result = JsonConvert.SerializeObject(new CamelCasedPropertyTest(), Json.SerializerSettings);
 
-            Assert.That(result, Is.EqualTo(@"{
-  ""testName"": ""Hello""
-}"));
+            Assert.That(result, Is.EqualTo("{" + Environment.NewLine +
+"  \"testName\": \"Hello\"" + Environment.NewLine +
+"}"));
         }
 
         [Test]
@@ -34,9 +35,9 @@ namespace Spritely.Configuration.Json.Test
         {
             var result = JsonConvert.SerializeObject(new CamelCasedEnumTest(), Json.SerializerSettings);
 
-            Assert.That(result, Is.EqualTo(@"{
-  ""first"": ""firstType""
-}"));
+            Assert.That(result, Is.EqualTo("{" + Environment.NewLine +
+"  \"first\": \"firstType\"" + Environment.NewLine +
+"}"));
         }
 
         private class CamelCasedPropertyTest
@@ -52,9 +53,9 @@ namespace Spritely.Configuration.Json.Test
         [Test]
         public void Serializer_reads_and_writes_SecureString_types()
         {
-            var serializedValue = @"{
-  ""secure"": ""password""
-}";
+            var serializedValue = "{" + Environment.NewLine +
+"  \"secure\": \"Password\"" + Environment.NewLine +
+"}";
             var deserialized = JsonConvert.DeserializeObject<SecureStringTest>(serializedValue, Json.SerializerSettings);
 
             var result = JsonConvert.SerializeObject(deserialized, Json.SerializerSettings);
