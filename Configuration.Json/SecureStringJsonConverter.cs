@@ -10,6 +10,7 @@ namespace Spritely.Configuration.Json
     using System;
     using System.Security;
     using Newtonsoft.Json;
+    using Spritely.Recipes;
 
     /// <summary>
     ///     Class that enables the Json serializer to construct SecureString instances.

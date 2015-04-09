@@ -39,9 +39,10 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="%28Spritely.Recipes%29\Functional.cs" />
+    <Compile Include="%28Spritely.Recipes%29\SecureString.cs" />
     <Compile Include="Json.cs" />
     <Compile Include="SecureStringJsonConverter.cs" />
-    <Compile Include="SecureStringExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
